@@ -15,8 +15,7 @@
     "prepublish": "npm run build",
     "test": "karma start --single-run",
     "lint": "eslint ./src",
-    "lint:tests": "eslint ./test",
-    "postinstall": "npm install && npm run build"
+    "lint:tests": "eslint ./test"
   },
   "husky": {
     "hooks": {
