@@ -16,7 +16,7 @@
     "test": "karma start --single-run",
     "lint": "eslint ./src",
     "lint:tests": "eslint ./test",
-    "postinstall": "cd node_modules/markdown-draft-js && yarn install && yarn run build"
+    "postinstall": "cd node_modules/markdown-draft-js && npm install && npm run build"
   },
   "husky": {
     "hooks": {
