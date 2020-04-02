@@ -90,6 +90,15 @@ const DefaultBlockEntities = {
         href: item.href
       }
     };
+  },
+  image: function (item) {
+    return {
+      type: 'image',
+      mutability: 'IMMUTABLE',
+      data: {
+        src: item.src,
+      },
+    }
   }
 };
 
@@ -154,7 +163,7 @@ function parseInline(inlineItem, BlockEntities, BlockStyles) {
 
       blockEntityRanges.push({
         offset: strlen(content) || 0,
-        length: 0,
+        length: 1,
         key: key
       });
     } else if (child.type.indexOf('_close') !== -1 && BlockEntities[child.type.replace('_close', '_open')]) {
@@ -249,6 +258,13 @@ function markdownToDraft(string, options = {}) {
       var {content, blockEntities, blockEntityRanges, blockInlineStyleRanges} = parseInline(item, BlockEntities, BlockStyles);
       var blockToModify = blocks[blocks.length - 1];
       blockToModify.text = content;
+
+      // No content, we have an image?
+      if (content === '') {
+        blockToModify.type = 'atomic'
+        blockToModify.text = ' ' // need a blank space?
+      }
+
       blockToModify.inlineStyleRanges = blockInlineStyleRanges;
       blockToModify.entityRanges = blockEntityRanges;
 
