@@ -93,7 +93,7 @@ const DefaultBlockEntities = {
   },
   image: function (item) {
     return {
-      type: 'image',
+      type: 'IMAGE',
       mutability: 'IMMUTABLE',
       data: {
         src: item.src,
